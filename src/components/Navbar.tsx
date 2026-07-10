@@ -66,7 +66,7 @@ export const Navbar = () => {
       </div>
 
       <header
-        className={`fixed z-50 transition-all duration-300 flex justify-end md:justify-center px-6 ${
+        className={`fixed z-50 transition-all duration-300 flex justify-end px-6 sm:px-12 ${
           isScrolled ? 'top-2 left-0 w-full' : 'top-4 left-0 w-full'
         }`}
       >
@@ -78,7 +78,7 @@ export const Navbar = () => {
           } ${
             isMobileMenuOpen
               ? 'w-full max-w-5xl px-8 py-3 rounded-3xl'
-              : 'w-auto md:w-full md:max-w-3xl px-3 md:px-10 py-1.5 md:py-2.5 rounded-full'
+              : 'px-6 md:px-8 py-1.5 md:py-2.5 rounded-full'
           }`}
         >
           {/* Desktop Links */}
@@ -96,20 +96,6 @@ export const Navbar = () => {
               </a>
             ))}
           </nav>
-
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center">
-            <a
-              href="mailto:nfo@ace-digital.co.in"
-              className={`px-6 py-2.5 rounded-full text-[13px] font-bold tracking-wider transition-colors duration-300 ${
-                isDark
-                  ? 'bg-white text-black hover:bg-neutral-200'
-                  : 'bg-black text-white hover:bg-neutral-800'
-              }`}
-            >
-              CONTACT US
-            </a>
-          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -147,15 +133,6 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <hr className={isDark ? 'border-white/10' : 'border-neutral-100'} />
-            <a
-              href="mailto:nfo@ace-digital.co.in"
-              className={`w-full py-2.5 rounded-full text-center text-xs font-bold tracking-wider cursor-none ${
-                isDark ? 'bg-white text-black' : 'bg-black text-white'
-              }`}
-            >
-              CONTACT US
-            </a>
           </div>
         )}
       </header>

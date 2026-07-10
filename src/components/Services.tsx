@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const ScrollRevealText = ({ text, className, style, delayOffset = 0 }: { text: string; className: string; style?: React.CSSProperties; delayOffset?: number }) => {
   const words = text.split(" ");
-  
+
   return (
     <span className={className} style={style}>
       {words.map((word, i) => (
@@ -52,19 +52,18 @@ export const Services = () => {
     },
     {
       number: "02",
-      category: "DIGITAL MARKETING",
-      title: "Social Media & Digital Marketing",
+      category: "DIGITAL COMMUNICATIONS",
+      title: "Digital Communications",
       tagline: "Engagement That Converts",
       description: "We combine creativity with strategy to build strong digital communities, increase brand visibility, and generate measurable business results.",
       lists: [
         {
           title: "Services",
           items: [
+            "Influencer Marketing",
             "Social Media Strategy & Management",
             "Content Creation & Creative Design",
             "Content Calendars & Campaign Planning",
-            "Meta, Google & LinkedIn Advertising",
-            "Influencer Marketing",
             "Analytics & Performance Reporting"
           ]
         }
@@ -75,40 +74,10 @@ export const Services = () => {
     },
     {
       number: "03",
-      category: "GLOBAL MEDIA",
-      title: "Global Media Distribution & Visibility",
-      tagline: "Amplify Your Story Worldwide",
-      description: "Reach journalists, media organizations, investors, and decision-makers through leading national and international distribution networks.",
-      lists: [
-        {
-          title: "Distribution Channels",
-          items: [
-            "PTI, AP, AFP & Press Association",
-            "Global Editorial Networks",
-            "Yahoo Finance, MarketWatch, Bloomberg & Reuters Syndication",
-            "Worldwide Media Outreach Across Key Markets"
-          ]
-        },
-        {
-          title: "Benefits",
-          items: [
-            "Global Brand Exposure",
-            "Increased Media Coverage",
-            "Enhanced Credibility & Authority",
-            "Access to Thousands of Media Outlets Worldwide"
-          ]
-        }
-      ],
-      bgBase: "bg-gradient-to-br from-purple-50/60 via-violet-50/30 to-white border-purple-100/70",
-      bgHover: "hover:from-purple-100/80 hover:via-violet-100/50 hover:to-white hover:border-purple-300",
-      tagStyle: "bg-purple-100/40 text-purple-800 border-purple-200/50 group-hover:bg-purple-200/60"
-    },
-    {
-      number: "04",
       category: "AI VISIBILITY",
       title: "AI Search Optimization & Brand Growth",
       tagline: "Future-Ready Communications",
-      description: "Every announcement is optimized for modern search and AI-driven discovery platforms to maximize visibility and long-term impact.",
+      description: "Your content is optimized for modern search and AI-driven discovery platforms to maximize visibility and long-term impact.",
       lists: [
         {
           title: "Services",
@@ -124,13 +93,34 @@ export const Services = () => {
       bgBase: "bg-gradient-to-br from-emerald-50/60 via-teal-50/30 to-white border-emerald-100/70",
       bgHover: "hover:from-emerald-100/80 hover:via-teal-100/50 hover:to-white hover:border-emerald-300",
       tagStyle: "bg-emerald-100/40 text-emerald-850 border-emerald-200/50 group-hover:bg-emerald-200/60"
+    },
+    {
+      number: "04",
+      category: "GLOBAL MEDIA",
+      title: "Global Media Distribution & Visibility",
+      tagline: "Amplify Your Story Worldwide",
+      description: "Reach journalists, media organizations, investors, and decision-makers through leading national and international distribution networks.",
+      lists: [
+        {
+          title: "Services",
+          items: [
+            "Worldwide Media Outreach, North America, Europe, Middle East, APAC, India",
+            "Enhanced Discoverability and Trust",
+            "Enhanced Credibility & Authority",
+            "Access to Thousands of Media Outlets Worldwide"
+          ]
+        }
+      ],
+      bgBase: "bg-gradient-to-br from-purple-50/60 via-violet-50/30 to-white border-purple-100/70",
+      bgHover: "hover:from-purple-100/80 hover:via-violet-100/50 hover:to-white hover:border-purple-300",
+      tagStyle: "bg-purple-100/40 text-purple-800 border-purple-200/50 group-hover:bg-purple-200/60"
     }
   ];
 
   return (
     <section id="services" className="bg-[#FAFBFB] text-black pt-20 pb-32 px-6 sm:px-12 relative z-30 overflow-hidden">
       {/* Grid Background Matrix Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none select-none"
         style={{
           backgroundImage: 'radial-gradient(circle, #000 1.5px, transparent 1.5px)',
@@ -144,10 +134,10 @@ export const Services = () => {
       <div className="absolute bottom-[10%] left-[10%] w-[500px] h-[500px] rounded-full bg-emerald-100/30 blur-[130px] pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        
+
         {/* --- BENTO SERVICES HEADER --- */}
         <div className="max-w-4xl mb-16">
-          <motion.span 
+          <motion.span
             className="text-xs font-extrabold tracking-[0.25em] text-neutral-400 uppercase mb-4 block font-mono"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -156,8 +146,8 @@ export const Services = () => {
           >
             WHAT WE DO
           </motion.span>
-          
-          <h2 
+
+          <h2
             className="font-black tracking-tight text-neutral-900 leading-[1.1] mb-6 uppercase flex flex-wrap"
             style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
           >
@@ -165,8 +155,8 @@ export const Services = () => {
           </h2>
 
           <p className="text-[16px] sm:text-[18px] text-neutral-600 max-w-3xl leading-relaxed font-light flex flex-wrap">
-            <ScrollRevealText 
-              text="From building your identity to growing your audience, earning media coverage, and preparing your brand for AI-powered discovery—we bring every part of modern communications together under one roof." 
+            <ScrollRevealText
+              text="From building your identity to growing your audience, earning media coverage, and preparing your brand for AI powered discovery we bring every part of modern communications together under one roof."
               className="w-full"
               delayOffset={0.25}
             />
@@ -182,10 +172,10 @@ export const Services = () => {
               initial={{ opacity: 0, filter: "blur(10px)", scale: 0.96, y: 30 }}
               whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.16, 1, 0.3, 1], 
-                delay: index * 0.05 
+              transition={{
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1],
+                delay: index * 0.05
               }}
             >
               <div className="relative z-10 flex flex-col h-full justify-between gap-12">
@@ -197,7 +187,7 @@ export const Services = () => {
                       {service.category}
                     </span>
                   </div>
-                  
+
                   <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 mb-2 leading-tight">
                     {service.title}
                   </h3>
@@ -207,7 +197,7 @@ export const Services = () => {
                       {service.tagline}
                     </div>
                   )}
-                  
+
                   <p className="text-[15px] sm:text-[16px] text-neutral-500 leading-relaxed font-light">
                     {service.description}
                   </p>
@@ -222,8 +212,8 @@ export const Services = () => {
                       </span>
                       <div className="flex flex-wrap gap-2">
                         {list.items.map((item, itemIdx) => (
-                          <span 
-                            key={itemIdx} 
+                          <span
+                            key={itemIdx}
                             className={`text-[11px] px-3.5 py-1.5 rounded-full border transition-all duration-[350ms] ${service.tagStyle} font-semibold`}
                           >
                             {item}

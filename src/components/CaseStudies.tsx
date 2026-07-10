@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ScrollRevealText = ({ text, className, style, delayOffset = 0 }: { text: string; className: string; style?: React.CSSProperties; delayOffset?: number }) => {
   const words = text.split(" ");
-  
+
   return (
     <span className={className} style={style}>
       {words.map((word, i) => (
@@ -41,8 +41,8 @@ export const CaseStudies = () => {
     img: `/final${id}.jpg`,
     title: `Issue ${(index + 1).toString().padStart(2, '0')}`,
     category: [
-      'BRANDING', 'DESIGN', 'MEDIA', 'AI STRATEGY', 
-      'COMMUNICATIONS', 'GLOBAL CAMPAIGN', 'AI SEARCH', 
+      'BRANDING', 'DESIGN', 'MEDIA', 'AI STRATEGY',
+      'COMMUNICATIONS', 'GLOBAL CAMPAIGN', 'AI SEARCH',
       'CREATIVE PRODUCTION', 'DIGITAL REACH'
     ][index % 9]
   }));
@@ -56,8 +56,8 @@ export const CaseStudies = () => {
       img: `/${imgName}.jpg`,
       title: `Issue ${(finalIds.length + id).toString().padStart(2, '0')}`,
       category: [
-        'BRANDING', 'DESIGN', 'MEDIA', 'AI STRATEGY', 
-        'COMMUNICATIONS', 'GLOBAL CAMPAIGN', 'AI SEARCH', 
+        'BRANDING', 'DESIGN', 'MEDIA', 'AI STRATEGY',
+        'COMMUNICATIONS', 'GLOBAL CAMPAIGN', 'AI SEARCH',
         'CREATIVE PRODUCTION', 'DIGITAL REACH'
       ][(finalIds.length + i) % 9]
     };
@@ -94,7 +94,7 @@ export const CaseStudies = () => {
 
     const scrollAmount = 400;
     const target = container.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount);
-    
+
     container.scrollTo({
       left: target,
       behavior: 'smooth'
@@ -132,16 +132,14 @@ export const CaseStudies = () => {
       {/* Section Header with Navigation Controls */}
       <div className="px-6 sm:px-12 mb-12 max-w-6xl mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h2 
+          <h2
             className="font-bold tracking-tight text-black leading-none uppercase flex flex-wrap"
             style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}
           >
-            <ScrollRevealText text="Reaching Audiences That Matter" className="w-full" />
+            <ScrollRevealText text="Elevating Brands Since 2005" className="w-full" />
           </h2>
-          
-          <p className="italic text-gray-600 mt-2 font-light flex flex-wrap text-xl">
-            <ScrollRevealText text="From C-Suite Leaders To Trendsetters, Wherever They Are" className="w-full" delayOffset={0.2} />
-          </p>
+
+
         </div>
 
         {/* Scroll Buttons */}
@@ -164,38 +162,37 @@ export const CaseStudies = () => {
       </div>
 
       {/* Horizontal Scroll Track */}
-      <div 
+      <div
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className={`flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 sm:px-12 pb-8 hide-scrollbar ${
-          isDown ? 'cursor-grabbing' : 'cursor-grab'
-        }`}
+        className={`flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 sm:px-12 pb-8 hide-scrollbar ${isDown ? 'cursor-grabbing' : 'cursor-grab'
+          }`}
         style={{ scrollbarWidth: 'none' }}
       >
         {covers.map((cover, idx) => (
           <motion.div
             key={cover.id}
-            className="flex-shrink-0 snap-center flex flex-col group w-[280px] sm:w-[380px]"
+            className="flex-shrink-0 snap-center flex flex-col group"
             initial={{ opacity: 0, filter: "blur(10px)", scale: 0.96, y: 25 }}
             whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-5% 0px -5% 0px" }}
-            transition={{ 
-              duration: 0.7, 
+            transition={{
+              duration: 0.7,
               ease: [0.16, 1, 0.3, 1],
               delay: (idx % 3) * 0.05
             }}
           >
             {/* Image Container with native lazy loading */}
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-100 rounded-lg">
+            <div className="relative h-[320px] sm:h-[480px] overflow-hidden rounded-lg bg-transparent">
               <img
                 src={cover.img}
                 alt={cover.title}
                 loading="lazy"
                 data-hover="view"
-                className="w-full h-full object-cover scale-100 hover:scale-[1.02] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none pointer-events-auto"
+                className="h-full w-auto object-contain grayscale group-hover:grayscale-0 scale-100 group-hover:scale-[1.01] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none pointer-events-auto"
                 draggable={false}
               />
             </div>
