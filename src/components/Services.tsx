@@ -31,10 +31,20 @@ export const Services = () => {
       number: "01",
       category: "BRANDING & CREATIVE",
       title: "Branding, Design & Creative Production",
-      description: "Your brand is more than a logo—it's the first impression, the lasting memory, and the reason people choose you. We design identities that feel timeless, distinctive, and impossible to ignore.",
-      tags: [
-        "Brand Identity", "Packaging Design", "Editorial Design", 
-        "Web Design & Development", "Creative Direction", "Photography & Videography"
+      tagline: "Design That Defines You",
+      description: "We create distinctive brand identities and visual experiences that connect with audiences and leave lasting impressions.",
+      lists: [
+        {
+          title: "Services",
+          items: [
+            "Brand Identity",
+            "Packaging Design",
+            "Magazines & Books",
+            "Website Design & Development",
+            "Art Direction & Creative Production",
+            "Photography/Videography"
+          ]
+        }
       ],
       bgBase: "bg-gradient-to-br from-pink-50/60 via-orange-50/30 to-white border-pink-100/70",
       bgHover: "hover:from-pink-100/80 hover:via-orange-100/50 hover:to-white hover:border-pink-300",
@@ -44,10 +54,20 @@ export const Services = () => {
       number: "02",
       category: "DIGITAL MARKETING",
       title: "Social Media & Digital Marketing",
-      description: "Every campaign is built with purpose. We blend creative storytelling with performance marketing to attract the right audience, drive engagement, and deliver measurable business growth.",
-      tags: [
-        "Social Media Strategy", "Content Creation", "Campaign Planning", 
-        "Meta, Google & LinkedIn Ads", "Influencer Marketing", "Performance Analytics"
+      tagline: "Engagement That Converts",
+      description: "We combine creativity with strategy to build strong digital communities, increase brand visibility, and generate measurable business results.",
+      lists: [
+        {
+          title: "Services",
+          items: [
+            "Social Media Strategy & Management",
+            "Content Creation & Creative Design",
+            "Content Calendars & Campaign Planning",
+            "Meta, Google & LinkedIn Advertising",
+            "Influencer Marketing",
+            "Analytics & Performance Reporting"
+          ]
+        }
       ],
       bgBase: "bg-gradient-to-br from-indigo-50/60 via-blue-50/30 to-white border-indigo-100/70",
       bgHover: "hover:from-indigo-100/80 hover:via-blue-100/50 hover:to-white hover:border-indigo-300",
@@ -57,10 +77,27 @@ export const Services = () => {
       number: "03",
       category: "GLOBAL MEDIA",
       title: "Global Media Distribution & Visibility",
-      description: "Great stories deserve global attention. We distribute your news through trusted media networks, connecting your brand with journalists, investors, decision-makers, and audiences worldwide.",
-      tags: [
-        "Press Distribution", "Global Editorial Networks", "Reuters & Bloomberg Syndication", 
-        "Yahoo Finance & MarketWatch", "International Media Outreach", "Brand Authority Building"
+      tagline: "Amplify Your Story Worldwide",
+      description: "Reach journalists, media organizations, investors, and decision-makers through leading national and international distribution networks.",
+      lists: [
+        {
+          title: "Distribution Channels",
+          items: [
+            "PTI, AP, AFP & Press Association",
+            "Global Editorial Networks",
+            "Yahoo Finance, MarketWatch, Bloomberg & Reuters Syndication",
+            "Worldwide Media Outreach Across Key Markets"
+          ]
+        },
+        {
+          title: "Benefits",
+          items: [
+            "Global Brand Exposure",
+            "Increased Media Coverage",
+            "Enhanced Credibility & Authority",
+            "Access to Thousands of Media Outlets Worldwide"
+          ]
+        }
       ],
       bgBase: "bg-gradient-to-br from-purple-50/60 via-violet-50/30 to-white border-purple-100/70",
       bgHover: "hover:from-purple-100/80 hover:via-violet-100/50 hover:to-white hover:border-purple-300",
@@ -70,10 +107,19 @@ export const Services = () => {
       number: "04",
       category: "AI VISIBILITY",
       title: "AI Search Optimization & Brand Growth",
-      description: "Search is evolving. We prepare your brand for AI-powered discovery, helping your content appear across modern search engines, answer platforms, and intelligent assistants.",
-      tags: [
-        "Metadata Optimization", "AI-Ready Content", "Answer Engine Optimization", 
-        "Generative Engine Optimization", "Search Discoverability", "Future-Ready Strategy"
+      tagline: "Future-Ready Communications",
+      description: "Every announcement is optimized for modern search and AI-driven discovery platforms to maximize visibility and long-term impact.",
+      lists: [
+        {
+          title: "Services",
+          items: [
+            "Metadata Optimization",
+            "AI & LLM-Ready Content Structuring",
+            "Answer Engine Optimization (AEO)",
+            "Generative Engine Optimization (GEO)",
+            "Enhanced Search Discoverability"
+          ]
+        }
       ],
       bgBase: "bg-gradient-to-br from-emerald-50/60 via-teal-50/30 to-white border-emerald-100/70",
       bgHover: "hover:from-emerald-100/80 hover:via-teal-100/50 hover:to-white hover:border-emerald-300",
@@ -152,30 +198,40 @@ export const Services = () => {
                     </span>
                   </div>
                   
-                  <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 mb-4 leading-tight">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 mb-2 leading-tight">
                     {service.title}
                   </h3>
+
+                  {service.tagline && (
+                    <div className="text-sm font-semibold text-neutral-800 italic mb-4">
+                      {service.tagline}
+                    </div>
+                  )}
                   
                   <p className="text-[15px] sm:text-[16px] text-neutral-500 leading-relaxed font-light">
                     {service.description}
                   </p>
                 </div>
 
-                {/* Bottom Half: Capabilities list */}
-                <div>
-                  <span className="text-[9px] font-extrabold tracking-[0.2em] text-neutral-400 uppercase block mb-4 font-mono">
-                    Capabilities
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {service.tags.map((tag, idx) => (
-                      <span 
-                        key={idx} 
-                        className={`text-[11px] px-3.5 py-1.5 rounded-full border transition-all duration-[350ms] ${service.tagStyle} font-semibold`}
-                      >
-                        {tag}
+                {/* Bottom Half: Lists */}
+                <div className="flex flex-col gap-6">
+                  {service.lists.map((list, listIdx) => (
+                    <div key={listIdx}>
+                      <span className="text-[9px] font-extrabold tracking-[0.2em] text-neutral-400 uppercase block mb-3 font-mono">
+                        {list.title}
                       </span>
-                    ))}
-                  </div>
+                      <div className="flex flex-wrap gap-2">
+                        {list.items.map((item, itemIdx) => (
+                          <span 
+                            key={itemIdx} 
+                            className={`text-[11px] px-3.5 py-1.5 rounded-full border transition-all duration-[350ms] ${service.tagStyle} font-semibold`}
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
