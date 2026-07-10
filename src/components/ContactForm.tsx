@@ -103,6 +103,8 @@ export const ContactForm = () => {
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
   const [consent, setConsent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
 
   const roleOptions = [
     { label: "Brand Owner / Founder", value: "brand_owner" },
@@ -125,26 +127,54 @@ export const ContactForm = () => {
     { label: "Other", value: "Other" }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(
-      JSON.stringify(
-        {
-          role,
-          firstName,
-          lastName,
-          email,
-          phone,
-          country,
-          website,
-          company,
-          message,
-          consent,
+    setIsSubmitting(true);
+    setSubmitResult(null);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
         },
-        null,
-        2
-      )
-    );
+        body: JSON.stringify({
+          access_key: "9b71b962-4b90-497d-aff0-b2e87efcea38",
+          name: `${firstName} ${lastName}`,
+          email: email,
+          phone: phone,
+          role: role,
+          country: country,
+          website: website,
+          company: company,
+          message: message,
+          consent: consent ? "accepted" : "declined"
+        })
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        setSubmitResult({ success: true, message: "Thank you! Your message has been sent successfully." });
+        // Reset form
+        setRole('');
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPhone('');
+        setCountry('');
+        setWebsite('');
+        setCompany('');
+        setMessage('');
+        setConsent(false);
+      } else {
+        setSubmitResult({ success: false, message: data.message || "Something went wrong. Please try again." });
+      }
+    } catch (error) {
+      setSubmitResult({ success: false, message: "An error occurred while sending your message. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -157,6 +187,7 @@ export const ContactForm = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
+          <input type="hidden" name="access_key" value="9b71b962-4b90-497d-aff0-b2e87efcea38" />
           {/* Row 1: Custom Select dropdown "I Would Describe Myself As" */}
           <motion.div 
             className="w-full relative z-[45]"
@@ -293,16 +324,32 @@ export const ContactForm = () => {
             </label>
           </motion.div>
 
+          {/* Submit Result Message */}
+          {submitResult && (
+            <motion.div
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`text-sm font-semibold p-4 rounded-2xl ${
+                submitResult.success 
+                  ? "bg-emerald-50 text-emerald-800 border border-emerald-100" 
+                  : "bg-rose-50 text-rose-800 border border-rose-100"
+              }`}
+            >
+              {submitResult.message}
+            </motion.div>
+          )}
+
           {/* Submit Button */}
           <motion.button
             type="submit"
-            className="bg-black text-white px-10 py-3.5 rounded-full text-xs font-bold tracking-[0.15em] hover:bg-gray-800 transition-all hover:scale-[1.02] active:scale-[0.98] w-fit block cursor-none"
+            disabled={isSubmitting}
+            className="bg-black text-white px-10 py-3.5 rounded-full text-xs font-bold tracking-[0.15em] hover:bg-gray-800 transition-all hover:scale-[1.02] active:scale-[0.98] w-fit block cursor-none disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.35 }}
           >
-            SUBMIT
+            {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
           </motion.button>
         </form>
       </div>

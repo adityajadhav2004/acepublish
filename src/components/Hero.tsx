@@ -124,19 +124,19 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
         >
-          <span className="text-gray-400 font-semibold text-[10px] tracking-[0.3em] mb-2 uppercase">WE ARE</span>
-          <div className="text-[18px] sm:text-[22px] font-bold tracking-wide">
+          <span className="text-gray-500 font-semibold text-[18px] tracking-[0.3em] mb-2 uppercase">WE ARE</span>
+          <div className="text-[18px] md:text-[40px] font-bold tracking-wide">
             <Typewriter />
           </div>
         </motion.div>
  
         <motion.p 
-          className="text-[14px] sm:text-[16px] text-gray-500 max-w-2xl leading-relaxed font-light"
+          className="text-[14px] md:text-[24px] text-gray-500 max-w-2xl leading-relaxed font-medium"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
         >
-          Branding, creative production, digital marketing, global media distribution, and AI visibility—designed to help ambitious brands grow with clarity, consistency, and measurable impact.
+          A single partner for branding, creative production, digital marketing, media distribution, and AI-ready communications, helping your brand stand out in an increasingly connected world.
         </motion.p>
       </div>
  
