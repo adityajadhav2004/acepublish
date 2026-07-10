@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply cursor-none bg-white text-black font-sans antialiased overflow-x-hidden;
+  }
+  
+  /* Enable native cursor on touch screens */
+  @media (pointer: coarse) {
+    body {
+      @apply cursor-auto;
+    }
+  }
+
+  /* Make sure inputs and buttons are clickable, and form text is selectable */
+  input, textarea, select, button {
+    @apply cursor-none;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Infinite Horizontal Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 120s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
