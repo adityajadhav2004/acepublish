@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 export const CustomCursor = () => {
   const [cursorType, setCursorType] = useState<'default' | 'clickable' | 'view'>('default');
   const [hoverText, setHoverText] = useState('');
+  const [isMobile, setIsMobile] = useState(true);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -13,6 +14,22 @@ export const CustomCursor = () => {
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    const checkDevice = () => {
+      const hasTouch = window.matchMedia('(pointer: coarse)').matches;
+      const isSmallScreen = window.innerWidth < 768;
+      setIsMobile(hasTouch || isSmallScreen);
+    };
+
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => {
+      window.removeEventListener('resize', checkDevice);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -26,8 +43,6 @@ export const CustomCursor = () => {
         if (!el) return false;
         const tag = el.tagName.toLowerCase();
         
-        // Exclude the consent checkbox container or actual standard checkboxes if they feel weird, 
-        // but the prompt says: "links, buttons, form inputs, images"
         if (
           tag === 'a' ||
           tag === 'button' ||
@@ -70,7 +85,9 @@ export const CustomCursor = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
+
+  if (isMobile) return null;
 
   const isExpanded = cursorType === 'clickable' || cursorType === 'view';
 

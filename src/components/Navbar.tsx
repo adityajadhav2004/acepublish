@@ -7,9 +7,8 @@ export const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
 
   const navItems = [
-    { name: 'About', link: '#about-services' },
-    { name: 'Services', link: '#about-services' },
-    { name: 'Case Studies', link: '#case-studies' },
+    { name: 'About', link: '#about' },
+    { name: 'Services', link: '#services' },
     { name: 'Contact', link: '#contact' },
   ];
 

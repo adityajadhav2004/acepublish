@@ -151,7 +151,7 @@ export const Hero = () => {
         </motion.div>
         
         <motion.button 
-          onClick={() => scrollToSection('about-services')}
+          onClick={() => scrollToSection('about')}
           className="flex items-center gap-2 cursor-none select-none hover:opacity-75 transition-opacity"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
