@@ -58,7 +58,7 @@ export const About = () => {
             <ScrollRevealText 
               text="ACEDIGITAL is a full-service creative, marketing, and communications agency that helps brands build meaningful identities, create compelling content, and amplify their presence across digital and global media channels."
               className="w-full"
-              style={{ fontSize: 'clamp(2.2rem, 4.5vw, 4.5rem)' }}
+              style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.6rem)' }}
             />
           </h3>
 
@@ -67,7 +67,7 @@ export const About = () => {
             <ScrollRevealText 
               text="From startups to established businesses, we transform ideas into impactful brand experiences that drive engagement, visibility, and growth."
               className="w-full"
-              style={{ fontSize: 'clamp(1.1rem, 2.2vw, 2.1rem)' }}
+              style={{ fontSize: 'clamp(1rem, 1.3vw, 1.25rem)' }}
               delayOffset={0.3}
             />
           </p>

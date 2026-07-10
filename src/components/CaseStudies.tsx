@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -33,21 +33,37 @@ export const CaseStudies = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  // Dynamically build list of 35 covers from public folder
-  const covers = Array.from({ length: 35 }, (_, i) => {
+  // Dynamically build list of covers from public folder
+  // 12 final images (skipping 5 since it is not in the directory)
+  const finalIds = [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13];
+  const finalCovers = finalIds.map((id, index) => ({
+    id: `final-${id}`,
+    img: `/final${id}.jpg`,
+    title: `Issue ${(index + 1).toString().padStart(2, '0')}`,
+    category: [
+      'BRANDING', 'DESIGN', 'MEDIA', 'AI STRATEGY', 
+      'COMMUNICATIONS', 'GLOBAL CAMPAIGN', 'AI SEARCH', 
+      'CREATIVE PRODUCTION', 'DIGITAL REACH'
+    ][index % 9]
+  }));
+
+  // 35 standard images
+  const imagesCovers = Array.from({ length: 35 }, (_, i) => {
     const id = i + 1;
     const imgName = id === 1 ? 'images' : `images${id}`;
     return {
-      id,
+      id: `image-${id}`,
       img: `/${imgName}.jpg`,
-      title: `Issue ${id.toString().padStart(2, '0')}`,
+      title: `Issue ${(finalIds.length + id).toString().padStart(2, '0')}`,
       category: [
         'BRANDING', 'DESIGN', 'MEDIA', 'AI STRATEGY', 
         'COMMUNICATIONS', 'GLOBAL CAMPAIGN', 'AI SEARCH', 
         'CREATIVE PRODUCTION', 'DIGITAL REACH'
-      ][i % 9]
+      ][(finalIds.length + i) % 9]
     };
   });
+
+  const covers = [...finalCovers, ...imagesCovers];
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
@@ -84,6 +100,32 @@ export const CaseStudies = () => {
       behavior: 'smooth'
     });
   };
+
+  // Auto-scroll carousel every 2 seconds
+  useEffect(() => {
+    if (isDown) return;
+
+    const interval = setInterval(() => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      // If we are near the end, wrap around to the beginning
+      if (container.scrollLeft >= maxScroll - 10) {
+        container.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollTo({
+          left: container.scrollLeft + 400,
+          behavior: 'smooth'
+        });
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isDown]);
 
   return (
     <section id="case-studies" className="bg-white text-black pt-24 pb-24 overflow-hidden relative z-30 select-none">
